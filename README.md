@@ -34,7 +34,7 @@ certoraRun ./certora/conf/default.conf
   "files": [
     "contracts/DEFYToken.sol"
   ],
-  "verify": "DEFYToken:certora/spec/ERC20t.spec",
+  "verify": "DEFYToken:certora/spec/ERC20.spec",
   "msg": "ERC20Rules",
   "mutations": {
     "gambit": [
