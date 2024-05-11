@@ -96,7 +96,7 @@ rule balanceShouldNotChange(env e) {
     address spender = e.msg.sender;
     address holder;
     address recipient;
-    mathint amount;
+    uint amount;
 
     mathint allowanceBefore        = allowance(holder, spender);
     mathint holderBalanceBefore    = balanceOf(holder);
@@ -116,13 +116,13 @@ rule balanceShouldNotChange(env e) {
     assert lastReverted, "insufficient allowance";
 
     
-    assert allowanceAfter == allowanceBefore - amount
+    assert allowanceAfter == allowanceBefore - amount,
     "allowance is deducted properly";
-    assert recipientBalanceAfter == recipientBalanceBefore + amount
+    assert recipientBalanceAfter == recipientBalanceBefore + amount,
     "Balance is updated accordingly";
-    
- 
+
 }
+
 //// Invariants 
 
 invariant balanceAddressZero(address alice, address bob)
