@@ -109,13 +109,8 @@ rule balanceShouldNotChange(env e) {
     mathint holderBalanceAfter    = balanceOf(holder);
     mathint recipientBalanceAfter = balanceOf(recipient);
 
-
-    // check if allowance is insufficient
-    require allowance(holder, spender) < amount;
-    transfer@withrevert(e, recipient, amount);
-    assert lastReverted, "insufficient allowance";
-
-    
+    assert assert_uint256(allowanceBefore) < amount,
+    "insufficient allowance";
     assert allowanceAfter == allowanceBefore - amount,
     "allowance is deducted properly";
     assert recipientBalanceAfter == recipientBalanceBefore + amount,
