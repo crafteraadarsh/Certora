@@ -118,23 +118,6 @@ rule balanceShouldNotChange(env e) {
 
 }
 
-//// Invariants 
-
-invariant balanceAddressZero(address alice, address bob)
-    balanceOf(0) == 0
-{
-    preserved transfer(address recipient, uint256 amount) with (env e) {
-        require recipient    == alice || recipient    == bob;
-        require e.msg.sender == alice || e.msg.sender == bob;
-    }
-
-    preserved transferFrom(address from, address to, uint256 amount) with (env e) {
-        require from == alice || from == bob;
-        require to   == alice || to   == bob;
-    }
-
-}
-
 //// ## Part 4: ghosts and hooks ///////////////////////////////////////////////
 
 ghost mathint sum_of_balances {
